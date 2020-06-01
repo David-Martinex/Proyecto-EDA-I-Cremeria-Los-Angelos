@@ -1,0 +1,8 @@
+Codigos de Ayuda
+Para poder copilar lenguaje c en Cx99
+desde el simbolo del Sistema el codigo es 
+( windows )
+gcc -Wall -std=c99 -o salida.out Modulo01.c Modulo02.c 
+
+Para clonar el repositorio en sus computadoras es lo siguien
+Primer Paso es ubicarse donde lo quieren clonar por medio de "Simbolo del Sistema"
