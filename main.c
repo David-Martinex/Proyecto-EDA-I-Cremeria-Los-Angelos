@@ -46,7 +46,7 @@ typedef struct
 DLL* DLL_New();
 void DLL_Delete( DLL** this );
 void DLL_InsertBack( DLL* this, Producto* p, size_t cant );
-Producto* DLL_RemoveBack( DLL* this, int* cantidad );
+Producto* DLL_RemoveBack( DLL* this );
 size_t DLL_Len( DLL* this );
 bool DLL_IsEmpty( DLL* this );
 void DLL_MakeEmpty( DLL* this );
@@ -123,7 +123,7 @@ void DLL_InsertBack( DLL* this, Producto* p, size_t cant )
 
 }
 
-Producto* DLL_RemoveBack( DLL* this, int* cantidad )
+Producto* DLL_RemoveBack( DLL* this )
 {
     assert( this );
     
@@ -135,9 +135,7 @@ Producto* DLL_RemoveBack( DLL* this, int* cantidad )
         p->bar_code = this->last->item.bar_code;
         p->precio = this->last->item.precio;
         strcpy( p->nombre, this->last->item.nombre);
-        
-        *cantidad = this->last->cantidad;
-        
+ 
         NodePtr tmp = this->last->prev;
         free( this->last );
         this->last = tmp;
