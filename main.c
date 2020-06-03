@@ -52,6 +52,7 @@ bool DLL_IsEmpty( DLL* this );
 void DLL_MakeEmpty( DLL* this );
 bool DLL_Search( DLL* this, int bar_code );
 void DLL_Traverse( DLL* this, void (*pfun)( void ) );
+DLL_PeekBack( this->list );
 
 
 //Definiciones de las funciones de DLL
@@ -202,6 +203,12 @@ void DLL_Traverse( DLL* this, void (*pfun)( void ) )
     }
 }
 
+DLL* DLL_PeekBack( DLL* this )
+{
+    assert( this );
+    return this->cursor;
+}
+
 //----------------------------------------------------------------------
 //  Inventario
 //----------------------------------------------------------------------
@@ -215,7 +222,7 @@ typedef Stock* StockPtr;
 
 StockPtr Stock_new()
 {
-   StockPtr list = DLL_new();
+   StockPtr list = DLL_New();
 
    // ...
 }
@@ -228,7 +235,7 @@ void Stock_delete( Stock* this )
     if( this ){
         
     }
-      DLL_delete( this->list );
+      DLL_Delete( this->list );
    // }
 
 }
