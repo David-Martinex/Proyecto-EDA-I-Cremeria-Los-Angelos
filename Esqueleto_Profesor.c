@@ -32,18 +32,19 @@ typedef struct Node
    Node* next;
 } Node;
 
+typedef Node* NodePtr;
 
 typedef struct
 {
-   Node* first;
-   Node* last;
-   Node* cursor;
+   NodePtr first;
+   NodePtr last;
+   NodePtr cursor;
    size_t len;
 } DLL;
 
 static new_node( Producto *p, size_t cant )
 {
-   Node* n = malloc( sizeof( node ) );
+   NodePtr n = malloc( sizeof( node ) );
 
    // si sí se creó el nodo:
 
