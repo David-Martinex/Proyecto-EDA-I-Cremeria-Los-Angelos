@@ -57,7 +57,7 @@ DLL_PeekBack( this->list );
 
 //Definiciones de las funciones de DLL
 
-static NodePtr New_node( Producto *p, size_t cant )
+static NodePtr New_node( Producto* p, size_t cant )
 {
     NodePtr n = ( NodePtr )malloc( sizeof( Node ) );
     
@@ -92,7 +92,7 @@ DLL* DLL_New()
 
 void DLL_Delete( DLL** this )
 {
-    if( !*this ){
+    if( *this ){
         DLL* list = *this;
         while( DLL_Len( list ) != 0 ){
             NodePtr next = list->first->next;
@@ -131,12 +131,13 @@ Producto* DLL_RemoveBack( DLL* this )
     if( !DLL_IsEmpty( this ) ){
         Producto* p = ( Producto* )malloc( sizeof ( Producto ) );
         if( p ){
-            
+            p->bar_code = this->last->item.bar_code;
+            p->precio = this->last->item.precio;
+            strcpy( p->nombre, this->last->item.nombre );
+
+            NodePtr
         }
-        p->bar_code = this->last->item.bar_code;
-        p->precio = this->last->item.precio;
-        strcpy( p->nombre, this->last->item.nombre);
- 
+        
         NodePtr tmp = this->last->prev;
         free( this->last );
         this->last = tmp;
