@@ -96,7 +96,7 @@ void DLL_Delete( DLL** this )
         while( DLL_Len( list ) != 0 ){
             NodePtr next = list->first->next;
             free( list->first );
-            this->first = next;
+            list->first = next;
             --list->len;
         }
         
