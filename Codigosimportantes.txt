@@ -6,3 +6,10 @@ gcc -Wall -std=c99 -o salida.out Modulo01.c Modulo02.c
 
 Para clonar el repositorio en sus computadoras es lo siguien
 Primer Paso es ubicarse donde lo quieren clonar por medio de "Simbolo del Sistema"
+
+Doxygen
+	generar doxyfile
+		doxygen -g Doxyfile
+		
+
+checar Csv
