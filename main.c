@@ -46,7 +46,8 @@ typedef struct
 DLL* DLL_New();
 void DLL_Delete( DLL** this );
 void DLL_InsertBack( DLL* this, Producto* p, size_t cant );
-Producto* DLL_RemoveBack( DLL* this );
+Producto DLL_RemoveFront( DLL* this );
+bool DLL_Remove( DLL* this );
 size_t DLL_Len( DLL* this );
 bool DLL_IsEmpty( DLL* this );
 void DLL_MakeEmpty( DLL* this );
@@ -108,7 +109,7 @@ void DLL_Delete( DLL** this )
 void DLL_InsertBack( DLL* this, Producto* p, size_t cant )
 {
     assert( this );
-   
+    
     NodePtr n = New_node( p , cant );
     if( n ){
         if( DLL_IsEmpty( this ) == false ){
@@ -123,29 +124,53 @@ void DLL_InsertBack( DLL* this, Producto* p, size_t cant )
 
 }
 
-Producto* DLL_RemoveBack( DLL* this )
+Producto DLL_RemoveFront( DLL* this )
 {
     assert( this );
+    Producto p;
     if( !DLL_IsEmpty( this ) ){
-        Producto* p = ( Producto* )malloc( sizeof ( Producto ) );
-        if( p ){
-            p->bar_code = this->last->item.bar_code;
-            p->precio = this->last->item.precio;
-            strcpy( p->nombre, this->last->item.nombre );
+        
+        p.bar_code = this->first->item.bar_code;
+        p.precio = this->first->item.precio;
+        strcpy( p.nombre, this->first->item.nombre );
+        
+        NodePtr tmp = this->last->prev;
+        free( this->last );
+        this->last = tmp;
 
-            NodePtr tmp = this->last->prev;
-            free( this->last );
-            this->last = tmp;
-
-            if( NULL != this->last ){
-                this->last->next = NULL;
-                --this->len;
-            }else{
-                reset( this );
-            }
+        if( NULL != this->last ){
+            this->last->next = NULL;
+            --this->len;
+        }else{
+            reset( this );
         }
     }
     return p;
+}
+
+bool DLL_Remove( DLL* this )
+{
+    assert( this );
+     
+    bool done = false;
+     
+    if( !DLL_IsEmpty( this ) && NULL != this->cursor ){
+        done = true;
+         
+        NodePtr left = this->cursor->prev;
+        NodePtr rigth = this->cursor->next;
+        free( this->cursor );
+         
+        if( left == NULL && rigth == NULL ){
+            reset( this );
+        }else{
+            this->cursor = left;
+            this->cursor->next = rigth;
+            rigth->prev = this->cursor;
+            --this->len;
+        }
+    }
+    return done;
 }
 
 size_t DLL_Len( DLL* this )
@@ -199,10 +224,10 @@ void DLL_Traverse( DLL* this, void (*pfun)( void ) )
     }
 }
 
-DLL* DLL_PeekBack( DLL* this )
+Producto DLL_PeekBack( DLL* this )
 {
     assert( this );
-    return this->cursor;
+    return this->cursor->item;
 }
 
 //----------------------------------------------------------------------
@@ -214,48 +239,49 @@ typedef struct
    DLL* list;
 } Stock; // <- Stock es más corto que Inventario
 
-typedef Stock* StockPtr;
-
-StockPtr Stock_new()
+Stock* Stock_New()
 {
-   StockPtr list = DLL_New();
-
-   // ...
+    Stock* Inventario = ( Stock* )malloc( sizeof( Stock ) );
+    if( Inventario ){
+        Inventario->list = DLL_New();
+    }
+    return Inventario;
 }
 
-void Stock_Delete( StockPtr this )
+void Stock_Delete( Stock* this )
 {
    // si *this existe{
     assert( this );
     if( this ){
         
     }
-      DLL_Delete( this->list );
+    DLL_Delete( this->list );
    // }
 
 }
 
-void Stock_add( StockPtr this, Producto* p, size_t cant )
+void Stock_add( Stock* this, Producto* p, size_t cant )
 {
-   // if( DLL_Search( this->list, p->bar_code ) == NULL ){
-   //     DLL_InsertBack( this->list, p, cant );
-   // } else {
-   //     actualiza la cantidad (Search() colocó al cursor en la posición correcta ):
+   if( DLL_Search( this->list, p->bar_code ) == false ){
+        DLL_InsertBack( this->list, p, cant );
+    } else {
+        this->list->cursor->cantidad += cant;
+    }
+    //actualiza la cantidad (Search() colocó al cursor en la posición correcta ):
    //         * lee el campo 'cantidad' del nodo
    //         * le suma 'cant'
    //         * escribe 'cantidad' al nodo
-   // }
 }
 
 // quita a un elemento de la lista
-void Stock_remove( StockPtr this, Producto* p )
+void Stock_remove( Stock* this, Producto* p )
 {
-   // if( DLL_Search( this->list, p->bar_code ) != NULL ){
-   //     DLL_RemoveBack( this->list->cursor );
-   // } 
+   if( DLL_Search( this->list, p->bar_code ) != false ){
+        DLL_Remove( this->list );
+    } 
 }
 
-bool Stock_search( StockPtr this, Producto* p )
+bool Stock_search( Stock* this, Producto* p )
 {
    return DLL_Search( this->list, p->bar_code );
 }
@@ -267,37 +293,43 @@ bool Stock_search_by_bar_code( Stock* this, int bar_code )
 
 
 // devuelve una copia del producto al que apunta el 'cursor'
-Producto Stock_get( StockPtr this )
+Producto Stock_get( Stock* this )
 {
    return DLL_PeekBack( this->list );
 }
 
-void Stock_report( StockPtr this )
+void Stock_report( Stock* this )
 {
    // imprime todos los productos de la lista
 }
 
-/*@brief Menu Principal del programa, El usuario debera escojer Alguna de las 6 opciones presentadas.
- *
- *@param this Referencia a un objeto DLL.
- *@param data_back El valor (data) leido del nodo. Si la funcion regresa false, 
- *entonces el valor de data_back no tiene sentido y no deberia ser usado.
- *
- *@return true si la lista NO estaba vacia, o el cursor No apunta a NuLL DLL_IsEmpty
- *el valor se pudo extraer; false si la lista estaba vacia o si el cursor 
- *apuntaba a Null.*/
+//----------------------------------------------------------------------
+//  Opciones de Menu
+//----------------------------------------------------------------------
 
-void Stock_Menu(StockPtr stock )
+void Menu_Existencia()
+{
+    
+}
+
+//----------------------------------------------------------------------
+//  Programa principal
+//----------------------------------------------------------------------
+
+void DadaBase()
+{
+    
+}
+
+void Menu(Stock* stock )
 {
    int opc;
-    do{
+    do{ 
         //El usuario debera de escojer Alguna de las 6 opciones presentadas a continuacion.
         printf("\n\a\t====={ Cremeria Los Angelos }=====\n ==> Menu");
-        printf("\nBienvenido, en que le podemos ayudar ?:\n1.-Vender Producto\n2.-Surtir el Almacen de un Producto
-        \n3.-Agregar Un Nuevo Producto\n4.-Desventurar un Producto\n5.-Ver el Inventario completo\n6.-Salir
-        \nFavor de escribir el numero de la opcion de su Preferencia:\t");
-        switch ( opc )
-        {
+        printf("\nBienvenido, en que le podemos ayudar ?:\n1.-Existencias\n2.-Abastecer\n3.-Vender Productos\n4.-Nuevo Producto\n5.-Desventurar un Producto\n6.-Salir\nFavor de escribir el numero de la opcion de su Preferencia:\t");
+        scanf("%d", &opc );
+        switch ( opc ){
         case 1:
             //Vender Producto/s
             
@@ -308,8 +340,8 @@ void Stock_Menu(StockPtr stock )
             break;
         case 3:
             //Agregar un nuevo producto
-            Producto* p;
-            p->
+            
+            
 
             break;
         case 4:
@@ -320,25 +352,16 @@ void Stock_Menu(StockPtr stock )
             
             break;
         default:
-            printf("\nFavor de ingresar un Numero correspondiente a las opciones presentadas del 1 -> 6");
+            printf("\nFavor de ingresar un Numero valido");
             break;
         }
-    }while(opc != 6 )
+    }while(opc != 6 );
 }
 
-void Stack_DataBase( Stock* stock )
-{
-    printf("");
-    //Stock_Add( stock, &p, cant);
-}
-
-//----------------------------------------------------------------------
-//  Programa principal
-//----------------------------------------------------------------------
 
 int main()
 {
-   Stock* Inventario = Stock_new();
+   Stock* Inventario = Stock_New();
    // crea al inventario
 
    Producto p;
@@ -348,7 +371,6 @@ int main()
 
    Stock_add( Inventario, &p, 10 );
 
-   Stock_delete( stock );
+   Stock_Delete( &Inventario );
    // destruye al inventario
 }
-
