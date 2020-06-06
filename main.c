@@ -37,7 +37,7 @@ size_t Cantidad( Stock* this )
 
 void Abastecimiento( Stock* this )
 {
-    printf("==>Menu==> Abastecimiento");
+    printf("==>Menu ==>Abastecimiento");
     Stock_report( this );
     int option;
     do {
@@ -87,7 +87,7 @@ void Venta( Stock* this )
     }while(produ!=2);
     printf("========{ Ticket }========");
     Stock_report( ticket );
-    printf("\nTotal es :\t%0.2f", total );
+    printf("\nTotal es :\t%0.2f\n", total );
     Stock_Delete( &ticket );
     
 }
