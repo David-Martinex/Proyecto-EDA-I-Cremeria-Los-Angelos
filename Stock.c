@@ -68,10 +68,15 @@ bool Stock_search_by_bar_code( Stock* this, int bar_code )
 
 
 // devuelve una copia del producto al que apunta el 'cursor'
-/*Producto Stock_get( Stock* this )
+/*void Stock_get( Stock* this )
 {
-   Producto p = DLL_PeekBack( this->list );
-   return p;
+    Producto p = DLL_Peek( this->list );
+    printf("\n\n===================\nNombre del Producto: ");
+    
+    for( size_t i = 0; i < 12 ; ++i ){
+       printf("%c", p.nombre[ i ] );
+    }
+    printf("\nCodigo de Barras: %u\nPrecio: %0.2f\nUnidades: %u\n", p.bar_code, p.precio, this->list->cursor->cantidad);
 }*/
 
 void Stock_report( Stock* this )
@@ -86,5 +91,5 @@ void Stock_report( Stock* this )
         }
         printf("\nCodigo de Barras: %d\nPrecio: %0.2f\nUnidades: %ld",it->item.bar_code, it->item.precio, it->cantidad );
     }
-    printf("\n\nCuentas con %ld Poductos" , DLL_Len( this->list ) );
+    printf("\n\nCuentas con %ld Poductos\n" , DLL_Len( this->list ) );
 }

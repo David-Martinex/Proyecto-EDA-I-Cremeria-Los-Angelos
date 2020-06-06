@@ -201,27 +201,9 @@ bool DLL_Search( DLL* this, int bar_code )
     }
     return found;
 }
-/**
-* @brief Recorre la lista ejecutando la acción dada por pfun.
-*
-* @param this Referencia a un objeto DLL.
-* @param pfun Un apuntador a función. Esta función será llamada (callback) una
-* vez por cada elemento de la lista.
-*/
 /*
-void DLL_Traverse( DLL* this, void (*pfun)( void ) )
+Producto DLL_Peek( DLL* this )
 {
     assert( this );
-    for( NodePtr it = this->first; it != NULL; it = it->next ){
-        pfun( void );
-    }
+    return this->cursor->item;
 }*/
-// eN DUDA 
-
-
-Producto DLL_PeekBack( DLL* this )
-{
-    assert( this );
-    Producto p = this->cursor->item;
-    return p;
-}

@@ -22,10 +22,6 @@ void Stock_remove( Stock* this, Producto* p );
 bool Stock_search( Stock* this, Producto* p );
 bool Stock_search_by_bar_code( Stock* this, int bar_code );
 
-// devuelve una copia del producto al que apunta el 'cursor'
-/*Producto Stock_get( Stock* this )
-{
-   return DLL_Peek( this->list );
-}*/
+//void Stock_get( Stock* this );
 
 void Stock_report( Stock* this );

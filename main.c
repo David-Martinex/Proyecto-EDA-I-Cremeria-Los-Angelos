@@ -20,7 +20,7 @@ size_t Cantidad( Stock* this )
     printf("\nDigite el codigo del producto que va a Usar ");
     scanf("%i",&bar_code);
     if(Stock_search_by_bar_code( this, bar_code ) == true ){
-        
+        //Stock_get( this );
         printf("\nintroduzca el numero de unidades del producto seleccionado: ");
         scanf("%u", &cant);
         if( cant > this->list->cursor->cantidad ){
@@ -85,6 +85,7 @@ void Venta( Stock* this )
             }
         }
     }while(produ!=2);
+    printf("========{ Ticket }========");
     Stock_report( ticket );
     printf("\nTotal es :\t%0.2f", total );
     Stock_Delete( &ticket );
@@ -182,7 +183,7 @@ void Menu(Stock* this )
    int opc;
     do{ 
         //El usuario debera de escojer Alguna de las 6 opciones presentadas a continuacion.
-        printf("\n\t====={ Cremeria Los Angelos }=====\n ==> Menu");
+        printf("\n\n\t====={ Cremeria Los Angelos }=====\n ==> Menu");
         printf("\nBienvenido, en que le podemos ayudar ?:\n1.-Existencias\n2.-Abastecer\n3.-Vender Productos\n4.-Nuevo Producto\n5.-Desventurar un Producto\n6.-Salir\nFavor de escribir el numero de la opcion de su Preferencia: ");
         scanf("%d", &opc );
         switch ( opc ){
