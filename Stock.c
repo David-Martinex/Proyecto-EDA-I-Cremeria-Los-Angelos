@@ -56,10 +56,10 @@ void Stock_remove( Stock* this, Producto* p )
     } 
 }
 
-bool Stock_search( Stock* this, Producto* p )
+/*bool Stock_search( Stock* this, Producto* p )
 {
    return DLL_Search( this->list, p->bar_code );
-}
+}*/
 
 bool Stock_search_by_bar_code( Stock* this, int bar_code )
 {
