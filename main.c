@@ -175,6 +175,20 @@ void Productos(Stock* this )
     strcpy( p3.nombre, "Sabritas" );
 
     Stock_add( this , &p3, 9 );
+
+    Producto p4;
+    p4.bar_code = 1222;
+    p4.precio = 12.00;
+    strcpy( p4.nombre, "Sabritones" );
+
+    Stock_add( this , &p4, 9 );
+
+    Producto p5;
+    p5.bar_code = 1567;
+    p5.precio = 2.50;
+    strcpy( p5.nombre, "Carlos_V" );
+
+    Stock_add( this , &p5, 10 );
 }
 
 
