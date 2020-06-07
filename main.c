@@ -1,18 +1,23 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
-#include <assert.h>
-#include <iso646.h>
-#include <string.h>
+#include <stdlib.h>/** */
+#include <stdio.h>/** */
+#include <stdbool.h>/** */
+#include <assert.h>/** */
+#include <string.h>/** */
+#define MAX_TAM 32 /** */
 
-#include "Producto.h"
-#include "DLL.h"
-#include "Stock.h"
+#include "Producto.h"//
+#include "DLL.h" /** */
+#include "Stock.h" /** */
 
 //----------------------------------------------------------------------
 //  Programa principal
 //----------------------------------------------------------------------
-
+/**
+ * @fn Cantidad 
+ * @brief Regresa una cantidad valida
+ * @param this Tipo de Dato Abstrcto Inventario
+ * @return regresa un valor tipo size_t
+ */
 size_t Cantidad( Stock* this )
 {
     int bar_code = 0;
@@ -34,7 +39,12 @@ size_t Cantidad( Stock* this )
     }
     return cant;
 }
-
+/**
+ * @fn Canridad
+ * @brief Regresa una cantidad valida
+ * @param this Tipo de Dato Abstrcto Inventario
+ * @return regresa un valor tipo size_t
+ */
 int Opcion(){
     int produ = 0;
     while(produ != 1 && produ != 2){
@@ -214,7 +224,6 @@ void Menu(Stock* this )
         }
     }while(opc != 6 );
 }
-
 
 int main()
 {

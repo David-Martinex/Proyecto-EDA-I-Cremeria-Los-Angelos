@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <assert.h>
-#include <iso646.h>
 #include <string.h>
+#define MAX_TAM 32
 
 //----------------------------------------------------------------------
 //  Producto
