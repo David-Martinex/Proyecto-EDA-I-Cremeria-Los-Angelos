@@ -22,7 +22,7 @@ size_t Cantidad( Stock* this )
     if(Stock_search_by_bar_code( this, bar_code ) == true ){
         //Stock_get( this );
         printf("\nintroduzca el numero de unidades del producto seleccionado: ");
-        scanf("%u", &cant);
+        scanf("%lu", &cant);
         if( cant > this->list->cursor->cantidad ){
             printf("\nNumero Invalido");
             cant = 0;
@@ -35,6 +35,18 @@ size_t Cantidad( Stock* this )
     return cant;
 }
 
+int Opcion(){
+    int produ = 0;
+    while(produ != 1 && produ != 2){
+        printf("\nDesea procesar otro producto?\n1)Si\n2)No\nOpcion: ");
+        scanf("%i",&produ);        
+        if( produ != 1 && produ != 2){
+            printf("\nIntrodusca un Numero valido");
+        }
+    }
+    return produ;
+}
+
 void Abastecimiento( Stock* this )
 {
     printf("==>Menu ==>Abastecimiento");
@@ -43,15 +55,10 @@ void Abastecimiento( Stock* this )
     do {
         option = 0;
         size_t canti = Cantidad( this );
-       
         this->list->cursor->cantidad += canti;
+        option = Opcion();
         
-        printf("\nDesea abastecer otro producto?\n1)Si\n-1)No\nOpcion: ");
-        scanf("%i", &option );        
-        if( option != 1 && option !=-1 ){
-            printf("\nIntrodusca un Numero valido");
-        }
-    }while(option >-1 );//Inventario();
+    }while(option != 2 );//Inventario();
     
 }
 
@@ -77,14 +84,8 @@ void Venta( Stock* this )
         }else{
             printf("\n Error");
         }
-        while(produ != 1 && produ != 2){
-            printf("\nDesea elegir otro producto?\n1)Si\n2)No\nOpcion: ");
-            scanf("%i",&produ);        
-            if( produ != 1 && produ != 2){
-                printf("\nIntrodusca un Numero valido");
-            }
-        }
-    }while(produ!=2);
+        produ = Opcion();
+    }while(produ != 2);
     printf("========{ Ticket }========");
     Stock_report( ticket );
     printf("\nTotal es :\t%0.2f\n", total );
@@ -112,21 +113,11 @@ void Agregar( Stock* this )
         printf("\nDigite precio para el Producto: ");
         scanf("%f", &p.precio );
         printf("\nDigite el numero de unidades: ");
-        scanf("%u", &cantidad);
-        
-        //si 1222 existe preguntar si quiere que vaya antes el nuevo 1221 y restarle 1 o si quiere que sea despues +1
-        
+        scanf("%lu", &cantidad);
         
         Stock_add( this, &p , cantidad );
-        
-        while(opc != 1 && opc != -1){
-            printf("\nDesea Agregar otro Producto ?\n1)Si\n-1)No\nOpcion: ");
-            scanf("%d", &opc );
-            if(opc != 1 && opc != -1){
-                printf("\n!!Error, Digite Un numero valido");
-            }
-        }
-    }while( opc != -1);
+        opc = Opcion();
+    }while( opc != 2);
 }
 
 void Eliminar( Stock* this )
@@ -141,10 +132,7 @@ void Eliminar( Stock* this )
         printf("\nDigite el codigo del Producto que va a Eliminar");
         scanf("%i" , &p.bar_code );
         Stock_remove( this , &p );
-        while( opc != 1 && opc != 2 ){
-            printf("\nDesea Eliminar otro Producto?\n1)Si\n2)No\nOpcion elegida: ");
-            scanf("%i", &opc );
-        }
+        opc = Opcion();
     }while( opc != 2 );
 
 }
