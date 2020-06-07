@@ -6,7 +6,6 @@
 //  Inventario
 //----------------------------------------------------------------------
 
-
 Stock* Stock_New()
 {
     Stock* Inventario = ( Stock* )malloc( sizeof( Stock ) );

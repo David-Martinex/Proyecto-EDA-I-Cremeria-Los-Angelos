@@ -15,7 +15,9 @@
 //----------------------------------------------------------------------
 /**
  * @brief Regresa una cantidad valida
+ * 
  * @param this Tipo de Dato Abstracto a Stock
+ * 
  * @return regresa un valor tipo entero sin signo
  */
 size_t Cantidad( Stock* this )
@@ -41,6 +43,7 @@ size_t Cantidad( Stock* this )
 }
 /**
  * @brief Regresa una opcion valida.
+ * 
  * @return regresa un valor tipo entero.
  */
 int Opcion()
@@ -57,6 +60,7 @@ int Opcion()
 }
 /**
  * @brief Abastece las unidades de un producto.
+ * 
  * @param this referencia a un TAD Stock.
  */
 void Abastecimiento( Stock* this )
@@ -223,13 +227,12 @@ void Menu(Stock* this )
 {
    int opc;
     do{ 
-        //El usuario debera de escojer Alguna de las 6 opciones presentadas a continuacion.
         printf("\n\n\t====={ Cremeria Los Angelos }=====\n ==> Menu");
         printf("\nBienvenido, en que le podemos ayudar ?:\n1.-Existencias\n2.-Abastecer\n3.-Vender Productos\n4.-Nuevo Producto\n5.-Desventurar un Producto\n6.-Salir\nFavor de escribir el numero de la opcion de su Preferencia: ");
         scanf("%d", &opc );
         switch ( opc ){
         case 1:
-            //existencia
+            //existencias
             Stock_report( this );
             printf("\n");
             break;
@@ -238,15 +241,15 @@ void Menu(Stock* this )
             Abastecimiento( this );
             break;
         case 3:
-            //-Vender
+            //Vende
             Venta( this );
             break;
         case 4:
             Agregar( this );
-            //Agregar un nuevo producto
+            //Agrega un nuevo producto
             break;
         case 5:
-            //Quitar un producto ya existente
+            //Quita un producto ya existente
             Eliminar( this );
             break;
         default:

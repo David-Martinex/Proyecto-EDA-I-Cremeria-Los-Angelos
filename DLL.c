@@ -1,8 +1,6 @@
 #include "Producto.h"
 #include "DLL.h"
 
-//Definiciones de las funciones de DLL
-
 static NodePtr New_node( Producto* p, size_t cant )
 {
     NodePtr n = ( NodePtr )malloc( sizeof( Node ) );
