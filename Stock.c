@@ -34,10 +34,6 @@ void Stock_add( Stock* this, Producto* p, size_t cant )
     } else {
         this->list->cursor->cantidad += cant;
     }
-    //actualiza la cantidad (Search() colocó al cursor en la posición correcta ):
-   //         * lee el campo 'cantidad' del nodo
-   //         * le suma 'cant'
-   //         * escribe 'cantidad' al nodo
 }
 
 void Stock_remove( Stock* this, Producto* p )

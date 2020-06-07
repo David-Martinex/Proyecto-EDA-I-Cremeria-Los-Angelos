@@ -13,10 +13,10 @@
 */
 typedef struct
 {
-   int bar_code;/** */
-   float precio;/***/
-   char nombre[MAX_TAM];/***/
-   // ... quizás más campos
+   int bar_code;
+   float precio;
+   char nombre[MAX_TAM];
+   // ... quizás más campos 
 } Producto;
 
 // Los productos NO tienen operaciones, accesaremos directamente a los campos

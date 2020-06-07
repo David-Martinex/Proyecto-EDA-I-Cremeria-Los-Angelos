@@ -14,7 +14,6 @@
 //  Programa principal
 //----------------------------------------------------------------------
 /**
- * @fn Cantidad 
  * @brief Regresa una cantidad valida
  * @param this Tipo de Dato Abstracto a Stock
  * @return regresa un valor tipo entero sin signo
@@ -41,7 +40,6 @@ size_t Cantidad( Stock* this )
     return cant;
 }
 /**
- * @fn Opcion().
  * @brief Regresa una opcion valida.
  * @return regresa un valor tipo entero.
  */
@@ -260,11 +258,9 @@ void Menu(Stock* this )
 
 int main()
 {
-    Stock* Inventario = Stock_New();
-    // crea al inventario
+    Stock* Inventario = Stock_New();// crea al inventario
     Productos( Inventario );
     Menu( Inventario );
   
-    Stock_Delete( &Inventario );
-    // destruye al inventario   
+    Stock_Delete( &Inventario );// destruye al inventario   
 }

@@ -18,10 +18,6 @@ static NodePtr New_node( Producto* p, size_t cant )
     return n;
 }
 
-
-// las mismas operaciones que la DLL, no todas, sólo las necesarias, pero deben
-// comenzar con Inventario en lugar de DLL:
-
 static void reset( DLL* this )
 {
     this->first = this->last = this->cursor = NULL;
