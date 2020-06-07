@@ -1,13 +1,14 @@
-#include <stdlib.h>/** */
-#include <stdio.h>/** */
-#include <stdbool.h>/** */
-#include <assert.h>/** */
-#include <string.h>/** */
-#define MAX_TAM 32 /** */
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdbool.h>
+#include <assert.h>
+#include <string.h>
+#define MAX_TAM 32 
+#define Max 12
 
-#include "Producto.h"//
-#include "DLL.h" /** */
-#include "Stock.h" /** */
+#include "Producto.h"
+#include "DLL.h" 
+#include "Stock.h" 
 
 //----------------------------------------------------------------------
 //  Programa principal
@@ -15,8 +16,8 @@
 /**
  * @fn Cantidad 
  * @brief Regresa una cantidad valida
- * @param this Tipo de Dato Abstrcto Inventario
- * @return regresa un valor tipo size_t
+ * @param this Tipo de Dato Abstracto a Stock
+ * @return regresa un valor tipo entero sin signo
  */
 size_t Cantidad( Stock* this )
 {
@@ -40,12 +41,12 @@ size_t Cantidad( Stock* this )
     return cant;
 }
 /**
- * @fn Canridad
- * @brief Regresa una cantidad valida
- * @param this Tipo de Dato Abstrcto Inventario
- * @return regresa un valor tipo size_t
+ * @fn Opcion().
+ * @brief Regresa una opcion valida.
+ * @return regresa un valor tipo entero.
  */
-int Opcion(){
+int Opcion()
+{
     int produ = 0;
     while(produ != 1 && produ != 2){
         printf("\nDesea procesar otro producto?\n1)Si\n2)No\nOpcion: ");
@@ -56,7 +57,10 @@ int Opcion(){
     }
     return produ;
 }
-
+/**
+ * @brief Abastece las unidades de un producto.
+ * @param this referencia a un TAD Stock.
+ */
 void Abastecimiento( Stock* this )
 {
     printf("==>Menu ==>Abastecimiento");
@@ -68,10 +72,15 @@ void Abastecimiento( Stock* this )
         this->list->cursor->cantidad += canti;
         option = Opcion();
         
-    }while(option != 2 );//Inventario();
+    }while(option != 2 );
     
 }
 
+/**
+ * @brief Disminulle las unidades de productos selescionados y crea un ticket.
+ * 
+ * @param this referencia a un TAD Stock. 
+ */
 void Venta( Stock* this )
 {
     printf("==>Menu ==>Vender ");
@@ -96,13 +105,18 @@ void Venta( Stock* this )
         }
         produ = Opcion();
     }while(produ != 2);
-    printf("========{ Ticket }========");
+    printf("\n========{ Ticket }========\n");
     Stock_report( ticket );
     printf("\nTotal es :\t%0.2f\n", total );
     Stock_Delete( &ticket );
     
 }
 
+/**
+ * @brief Anexa nuevos productos al Invetario( Stock ).
+ * 
+ * @param this referencia a un tipo abstracto Stock
+*/
 void Agregar( Stock* this )
 {
     printf("\n\n==>Menu ==>Agregar ");
@@ -113,7 +127,7 @@ void Agregar( Stock* this )
         Producto p;
         p.bar_code = 0;
         p.precio = 0.0;
-        char nombre[ 32 ];
+        char nombre[ MAX_TAM ];
         size_t cantidad;
         printf("\nDigite el Nombre del Producto: ");
         scanf("%s", nombre );
@@ -130,6 +144,11 @@ void Agregar( Stock* this )
     }while( opc != 2);
 }
 
+/**
+ * @brief Elimina un producto del Inventario.
+ * 
+ * @param this referencia a un tipo Abstracto Stock.
+*/
 void Eliminar( Stock* this )
 {
     printf("\n\n==>Menu ==>Eliminar ");
@@ -147,6 +166,11 @@ void Eliminar( Stock* this )
 
 }
 
+/**
+ * @brief Agrega productos ya establecidos.
+ * 
+ * @param this referencia a un TAD Stock.
+*/
 void Productos(Stock* this )
 {
     Producto p1;
@@ -185,7 +209,11 @@ void Productos(Stock* this )
     Stock_add( this , &p5, 10 );
 }
 
-
+/**
+ * @brief Ofrece opciones y las ejecuta.
+ * 
+ * @param this referencia a un TAD Stock.
+*/
 void Menu(Stock* this )
 {
    int opc;

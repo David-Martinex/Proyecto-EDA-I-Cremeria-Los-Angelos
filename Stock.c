@@ -18,7 +18,6 @@ Stock* Stock_New()
 
 void Stock_Delete( Stock** this )
 {
-   // si *this existe{
     assert( *this );
     if( *this ){
         Stock* n = *this;
@@ -41,7 +40,6 @@ void Stock_add( Stock* this, Producto* p, size_t cant )
    //         * escribe 'cantidad' al nodo
 }
 
-// quita a un elemento de la lista
 void Stock_remove( Stock* this, Producto* p )
 {
    if( DLL_Search( this->list, p->bar_code ) != false ){
@@ -56,18 +54,11 @@ void Stock_remove( Stock* this, Producto* p )
     } 
 }
 
-/*bool Stock_search( Stock* this, Producto* p )
-{
-   return DLL_Search( this->list, p->bar_code );
-}*/
-
 bool Stock_search_by_bar_code( Stock* this, int bar_code )
 {
    return DLL_Search( this->list, bar_code );
 }
 
-
-// devuelve una copia del producto al que apunta el 'cursor'
 /*void Stock_get( Stock* this )
 {
     Producto p = DLL_Peek( this->list );
@@ -81,12 +72,11 @@ bool Stock_search_by_bar_code( Stock* this, int bar_code )
 
 void Stock_report( Stock* this )
 {
-   // imprime todos los productos de la lista
    assert( this );
     for(NodePtr it = this->list->first; it != NULL ; it = it->next ){
         printf("\n=====================");
         printf("\nProducto: ");
-        for( size_t i = 0 ; i < 12 ; ++i ){
+        for( size_t i = 0 ; i < Max ; ++i ){
             printf("%c", it->item.nombre[ i ] );   
         }
         printf("\nCodigo de Barras: %d\nPrecio: %0.2f\nUnidades: %ld",it->item.bar_code, it->item.precio, it->cantidad );

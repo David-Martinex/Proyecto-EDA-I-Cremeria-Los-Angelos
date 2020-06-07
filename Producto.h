@@ -8,12 +8,14 @@
 //----------------------------------------------------------------------
 //  Producto
 //----------------------------------------------------------------------
-
+/**
+ * @struct TAD llamado Producto
+*/
 typedef struct
 {
-   int bar_code;
-   float precio;
-   char nombre[32];
+   int bar_code;/** */
+   float precio;/***/
+   char nombre[MAX_TAM];/***/
    // ... quizás más campos
 } Producto;
 

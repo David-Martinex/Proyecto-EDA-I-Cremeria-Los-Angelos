@@ -4,27 +4,26 @@
 #include <assert.h>
 #include <string.h>
 #define MAX_TAM 32
+#define Max 12
 
 //----------------------------------------------------------------------
 //  Lista doblemente enlazada
 //----------------------------------------------------------------------
  /** 
-  * @struct un TAD Nodo 
+  * @struct un TAD llamado Nodo 
  */
 typedef struct Node
 {
    Producto item; /**referencia a un tipo objeto Producto */
-   size_t cantidad; /** numero de unidades que se tienen.*/
+   size_t cantidad; 
 
    struct Node* prev; /** referencia al anterior nodo.*/
    struct Node* next; /** referencia al siguiente nodo.*/
 } Node;
-/**
- * @typedef hacemos que Node* = NodePtr. 
-*/
+
 typedef Node* NodePtr;
 /** 
-  * @struct un TAD llamado Lista Doblemente Enlazada.
+  * @struct un TAD llamado DLL(Lista Doblemente Enlazada).
  */
 typedef struct
 {
@@ -45,8 +44,7 @@ DLL* DLL_New();
  * @fn DLL_Delete().
  * @brief Destruye una Lista Doblemente Enlazada.
  * @param this referencia a un tipo abstracto DLL.
- * @return Solo regresa la memoria prestada para DLL a la computadora y no devuelve ningun valor.
- * */
+ */
 void DLL_Delete( DLL** this );
 
 /**
@@ -55,7 +53,6 @@ void DLL_Delete( DLL** this );
  * @param this referencia a un tipo abstracto DLL.
  * @param p referencia a un objeto tipo Producto.
  * @param cant referencia a las unidades del Producto
- * @return 
  */
 void DLL_InsertBack( DLL* this, Producto* p, size_t cant );
 
@@ -65,7 +62,6 @@ void DLL_InsertBack( DLL* this, Producto* p, size_t cant );
  * @param this referencia a un tipo abstracto DLL
  * @param p referencia a un objeto tipo Producto
  * @param cant referencia a las unidades del Producto
- * @return 
  */
 void DLL_InsertFront( DLL* this, Producto* p, size_t cant );
 
