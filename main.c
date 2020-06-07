@@ -176,37 +176,44 @@ void Productos(Stock* this )
     Producto p1;
     p1.bar_code = 1234;
     p1.precio = 13.50;
-    strcpy( p1.nombre, "Choco_Roles" );
-
+    strcpy( p1.nombre, "Crema_Lala" );
     Stock_add( this , &p1, 10 );
     
     Producto p2;
     p2.bar_code = 1334;
     p2.precio = 13.50;
-    strcpy( p2.nombre, "Chetos" );
-
+    strcpy( p2.nombre, "Queso_panela" );
     Stock_add( this , &p2, 9 );
     
     Producto p3;
-    p3.bar_code = 1344;
+    p3.bar_code = 1404;
     p3.precio = 9.50;
     strcpy( p3.nombre, "Sabritas" );
-
     Stock_add( this , &p3, 9 );
 
     Producto p4;
-    p4.bar_code = 1222;
-    p4.precio = 12.00;
-    strcpy( p4.nombre, "Sabritones" );
-
+    p4.bar_code = 2222;
+    p4.precio = 24.50;
+    strcpy( p4.nombre, "Jamon_EFA" );
     Stock_add( this , &p4, 9 );
 
     Producto p5;
     p5.bar_code = 1567;
-    p5.precio = 2.50;
-    strcpy( p5.nombre, "Carlos_V" );
-
+    p5.precio = 22.00;
+    strcpy( p5.nombre, "Queso_Crema" );
     Stock_add( this , &p5, 10 );
+
+    Producto p6;
+    p6.bar_code = 3587;
+    p6.precio = 38.50;
+    strcpy( p6.nombre, "Huevos" );
+    Stock_add( this , &p6, 10 );
+
+    Producto p7;
+    p7.bar_code = 2597;
+    p7.precio = 20.00;
+    strcpy( p7.nombre, "Salchicas" );
+    Stock_add( this , &p7, 10 );
 }
 
 /**
@@ -235,8 +242,6 @@ void Menu(Stock* this )
         case 3:
             //-Vender
             Venta( this );
-            
-
             break;
         case 4:
             Agregar( this );
