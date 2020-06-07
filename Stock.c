@@ -74,7 +74,7 @@ void Stock_report( Stock* this )
 {
    assert( this );
     for(NodePtr it = this->list->first; it != NULL ; it = it->next ){
-        printf("\n=====================");
+        printf("\n\n=====================");
         printf("\nProducto: ");
         for( size_t i = 0 ; i < Max ; ++i ){
             printf("%c", it->item.nombre[ i ] );   
