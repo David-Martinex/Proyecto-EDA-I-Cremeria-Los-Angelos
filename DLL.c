@@ -171,17 +171,6 @@ bool DLL_IsEmpty( DLL* this )
     return this->first == NULL;
 }
 
-/*void DLL_MakeEmpty( DLL* this )
-{
-    assert( this );
-    while( NULL != this->first ){
-        NodePtr tmp = this->first->next;
-        free( this->first );
-        this->first = tmp;
-    }
-    reset( this );
-}*/
-
 bool DLL_Search( DLL* this, int bar_code )
 {
     assert( this );
@@ -195,9 +184,9 @@ bool DLL_Search( DLL* this, int bar_code )
     }
     return found;
 }
-/*
+
 Producto DLL_Peek( DLL* this )
 {
     assert( this );
     return this->cursor->item;
-}*/
+}

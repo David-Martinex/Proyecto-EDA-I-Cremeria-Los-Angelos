@@ -14,11 +14,11 @@
 //  Programa principal
 //----------------------------------------------------------------------
 /**
- * @brief Regresa una cantidad valida
+ * @brief Regresa una cantidad valida que no sobrepase las unidades dentro del inventario
  * 
- * @param this Tipo de Dato Abstracto a Stock
+ * @param this Tipo de dato Abstracto Stock
  * 
- * @return regresa un valor tipo entero sin signo
+ * @return Un valor tipo entero sin signo
  */
 size_t Cantidad( Stock* this )
 {
@@ -27,7 +27,7 @@ size_t Cantidad( Stock* this )
     printf("\nDigite el codigo del producto que va a Usar ");
     scanf("%i",&bar_code);
     if(Stock_search_by_bar_code( this, bar_code ) == true ){
-        //Stock_get( this );
+        Stock_get( this );
         printf("\nintroduzca el numero de unidades del producto seleccionado: ");
         scanf("%lu", &cant);
         if( cant > this->list->cursor->cantidad ){
@@ -42,9 +42,9 @@ size_t Cantidad( Stock* this )
     return cant;
 }
 /**
- * @brief Regresa una opcion valida.
+ * @brief Regresa una opción válida.
  * 
- * @return regresa un valor tipo entero.
+ * @return Un valor tipo entero.
  */
 int Opcion()
 {
@@ -59,9 +59,9 @@ int Opcion()
     return produ;
 }
 /**
- * @brief Abastece las unidades de un producto.
+ * @brief Abastece las unidades de un producto dentro del inventario.
  * 
- * @param this referencia a un TAD Stock.
+ * @param this referencia a un tipo de dato abstracto Stock.
  */
 void Abastecimiento( Stock* this )
 {
@@ -79,9 +79,9 @@ void Abastecimiento( Stock* this )
 }
 
 /**
- * @brief Disminulle las unidades de productos selescionados y crea un ticket.
+ * @brief Disminuye las unidades de productos seleccionados y crea un ticket.
  * 
- * @param this referencia a un TAD Stock. 
+ * @param this referencia a un tipo de dato abstracto Stock. 
  */
 void Venta( Stock* this )
 {
@@ -115,9 +115,9 @@ void Venta( Stock* this )
 }
 
 /**
- * @brief Anexa nuevos productos al Invetario( Stock ).
+ * @brief Agrega nuevos productos al Inventario( Stock ).
  * 
- * @param this referencia a un tipo abstracto Stock
+ * @param this referencia a un tipo de dato abstracto Stock
 */
 void Agregar( Stock* this )
 {
@@ -147,9 +147,9 @@ void Agregar( Stock* this )
 }
 
 /**
- * @brief Elimina un producto del Inventario.
+ * @brief Retira un producto del Inventario.
  * 
- * @param this referencia a un tipo Abstracto Stock.
+ * @param this referencia a un tipo de dato abstracto Stock.
 */
 void Eliminar( Stock* this )
 {
@@ -171,7 +171,7 @@ void Eliminar( Stock* this )
 /**
  * @brief Agrega productos ya establecidos.
  * 
- * @param this referencia a un TAD Stock.
+ * @param this referencia a un tipo de dato abstracto Stock.
 */
 void Productos(Stock* this )
 {
@@ -221,7 +221,7 @@ void Productos(Stock* this )
 /**
  * @brief Ofrece opciones y las ejecuta.
  * 
- * @param this referencia a un TAD Stock.
+ * @param this referencia a un tipo de dato abstracto Stock.
 */
 void Menu(Stock* this )
 {

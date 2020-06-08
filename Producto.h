@@ -9,7 +9,7 @@
 //  Producto
 //----------------------------------------------------------------------
 /**
- * @struct TAD llamado Producto
+ * @struct tipo de dato abstracto llamado Producto
 */
 typedef struct
 {
@@ -19,4 +19,3 @@ typedef struct
    // ... quizás más campos 
 } Producto;
 
-// Los productos NO tienen operaciones, accesaremos directamente a los campos
