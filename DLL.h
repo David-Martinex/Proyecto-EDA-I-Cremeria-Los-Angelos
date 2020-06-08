@@ -91,7 +91,7 @@ size_t DLL_Len( DLL* this );
 
 /**
  * @brief Indica si DLL esta vacia.
- * @param this referencia a un tipo abstracto DLL.
+ * @param this referencia a un tipo de dato abstracto DLL.
  * @return true o false dependiendo el caso.
  */
 bool DLL_IsEmpty( DLL* this );

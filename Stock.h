@@ -10,7 +10,7 @@
 //  Inventario
 //----------------------------------------------------------------------
 /**
- * @struct estructura llamada Stock<-- es mas corto que inventario.
+ * @struct tipo de dato abstracto llamada Stock<-- es mas corto que inventario.
 */
 typedef struct
 {
@@ -30,17 +30,17 @@ Stock* Stock_New();
 void Stock_Delete( Stock** this );
 
 /**
- * @brief Agrega un nuevo producto y lee y guarda su cantidad.
+ * @brief Agrega un nuevo producto, lee y guarda su cantidad.
  * @param this referencia a un tipo de dato abstracto Stock.
- * @param p referencia a un objeto tipo Producto.
- * @param cant referencia a un tipo entero sin signo
+ * @param p referencia a un tipo de dato abstracto Producto.
+ * @param cant referencia a un tipo entero sin signo.
  */
 void Stock_add( Stock* this, Producto* p, size_t cant );
 
 /**
- * @brief Retira un Producto.
+ * @brief Retira un Producto del Inventario.
  * @param this referencia a un tipo de dato abstracto Stock.
- * @param p referencia a un objeto tipo Producto.
+ * @param p referencia a un tipo de dato abstracto Producto.
  */
 void Stock_remove( Stock* this, Producto* p );
 
@@ -59,7 +59,7 @@ bool Stock_search_by_bar_code( Stock* this, int bar_code );
 void Stock_get( Stock* this );
 
 /**
- * @brief Imprimer todos los productos dentro del inventario.
+ * @brief Imprimir todos los productos dentro del inventario.
  * @param this referencia a un tipo de dato abstracto Stock.
  */
 void Stock_report( Stock* this );
