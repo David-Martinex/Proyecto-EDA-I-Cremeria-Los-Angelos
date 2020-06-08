@@ -9,7 +9,7 @@
 //  Producto
 //----------------------------------------------------------------------
 /**
- * @struct tipo de dato abstracto llamado Producto
+ * @struct Producto tipo de dato abstracto
 */
 typedef struct
 {

@@ -10,7 +10,7 @@
 //  Inventario
 //----------------------------------------------------------------------
 /**
- * @struct tipo de dato abstracto llamada Stock<-- es mas corto que inventario.
+ * @struct Stock tipo de dato abstracto llamada, Stock es mas corto que inventario.
 */
 typedef struct
 {
