@@ -1,0 +1,2 @@
+gcc -Wall -std=c99 -o Salida.out main.c DLL.c Stock.c
+./Salida.out
